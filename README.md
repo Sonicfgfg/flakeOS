@@ -18,7 +18,8 @@ The project is under active development (pre-alpha). The following features are 
 - 💽 Boots in QEMU with Btrfs + GRUB
 - 🌱 Btrfs snapshots (`@`, `@snapshots`) created before every system update
 - ⏪ Automatic rollback to the last known working snapshot after failed boots (using a GRUB boot counter), with a clear on-screen notification
-- 🛡️ In development: `flakeos-watchdog` — automatic recovery of individual critical files from the latest snapshot
+- 🛡️ `flakeos-watchdog` — automatic recovery of individual critical files from the latest snapshot
+- In development: custom WM '[flakeWM]'
 
 ## Roadmap
 
