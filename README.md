@@ -1,58 +1,59 @@
 # flakeOS
 
-**flakeOS** - независимый Linux-дистрибутив для домашнего использования, собранный с нуля на базе Arch/Artix-инструментария. Упор на простоту, стабильность и живучесть системы: если что-то сломается, flakeOS сама откатится назад.
+**flakeOS** is an independent Linux distribution for desktop use, built from scratch using Arch/Artix tooling. Its main focus is simplicity, stability, and system resilience: if something breaks, flakeOS can automatically roll back to a previous working state.
 
-## Философия
+## Philosophy
 
-- **Просто.** Никаких лишних абстракций и надстроек — понятная система, в которой легко разобраться.
-- **Лёгкая и быстрая.** Работает даже на слабом/старом железе.
-- **Живучая.** Автоматические снапшоты и откат при поломке — систему почти невозможно превратить в кирпич.
-- **Своя.** Собственный пакетный менеджер, WM и репозиторий — без лишних зависимостей от чужой инфраструктуры.
+- **Simple.** No unnecessary abstractions or layers — just a straightforward system that's easy to understand.
+- **Lightweight and fast.** Designed to run even on older and low-end hardware.
+- **Resilient.** Automatic snapshots and rollback mechanisms make the system extremely difficult to render unusable.
+- **Independent.** Its own package manager, window manager, and repository — without unnecessary dependencies on external infrastructure.
 
-## Текущий статус
+## Current Status
 
-Проект в активной разработке (pre-alpha). Уже работает:
+The project is under active development (pre-alpha). The following features are already working:
 
-- 🏗️ Базовая система на runit + glibc (артix-бутстрап)
-- 📦 Собственный подписанный pacman-репозиторий `[flakeos]`
-- 💽 Загрузка в QEMU с Btrfs + GRUB
-- 🌱 Btrfs-снапшоты (`@`, `@snapshots`) перед каждым обновлением
-- ⏪ Автоматический откат на последний рабочий снапшот при неудачных загрузках (через GRUB boot counter), с понятным сообщением на экране
-- 🛡️ В разработке: `flakeos-watchdog` — автоматическое восстановление отдельных критичных файлов из последнего снапшота
+- 🏗️ Base system running runit + glibc (Artix bootstrap)
+- 📦 Custom signed pacman repository `[flakeos]`
+- 💽 Boots in QEMU with Btrfs + GRUB
+- 🌱 Btrfs snapshots (`@`, `@snapshots`) created before every system update
+- ⏪ Automatic rollback to the last known working snapshot after failed boots (using a GRUB boot counter), with a clear on-screen notification
+- 🛡️ In development: `flakeos-watchdog` — automatic recovery of individual critical files from the latest snapshot
 
 ## Roadmap
 
-- [ ] Защита `/usr` от повреждения (read-only и/или watchdog)
-- [ ] Команда rollback вручную
-- [ ] Собственный менеджер пакетов (сейчас — форк на pacman/libalpm)
-- [ ] Аналог AUR/Flatpak + сборка из исходников в стиле Gentoo
-- [ ] Собственный WM с графическими настройками (без конфигов, "Good Lock для ПК"), с возможностью выбора WM при установке
-- [ ] Песочница/изоляция приложений (как в iOS/OpenBSD)
-- [ ] Перенос системы на другой диск/ПК без переустановки
-- [ ] Публикация репозитория и образов на GitHub Releases
+- [ ] Protect `/usr` against corruption (read-only and/or watchdog)
+- [ ] Manual rollback command
+- [ ] Custom package manager (currently based on a pacman/libalpm fork)
+- [ ] AUR/Flatpak alternative + source-based package building inspired by Gentoo
+- [ ] Custom WM with graphical configuration tools (no config files, "Good Lock for PC"), with the ability to choose a WM during installation
+- [ ] Application sandboxing/isolation (similar to iOS/OpenBSD)
+- [ ] Move the system to another drive/PC without reinstalling
+- [ ] Publish the repository and installation images on GitHub Releases
 
-## Технические детали
+## Technical Details
 
 | | |
 |---|---|
-| Ядро | Linux |
-| Базовая система | Artix-подобный бутстрап |
+| Kernel | Linux |
+| Base System | Artix-like bootstrap |
 | libc | glibc |
-| Init | runit |
-| ФС | Btrfs |
-| Пакетный менеджер | pacman/libalpm (пока) |
-| Загрузчик | GRUB |
+| Init System | runit |
+| Filesystem | Btrfs |
+| Package Manager | pacman/libalpm (for now) |
+| Bootloader | GRUB |
 
-## Установка
+## Installation
 
-⚠️ flakeOS пока не готова к использованию в продакшене. Инструкции по сборке и запуску в QEMU появятся здесь по мере готовности первого релиза.
+⚠️ flakeOS is not yet ready for production use. Build and QEMU installation instructions will be published here as the first release approaches.
 
-## Сообщество
+## Community
 
-- Telegram-канал: https://t.me/flakeoslinux - новости о разработке, можно задать вопрос и пообщаться
-- Issues в этом репозитории — баг-репорты и предложения
+- Telegram channel: https://t.me/flakeoslinux — development updates, questions, and community discussions
+- Issues in this repository — bug reports and feature suggestions
 
 ## Contributing
 
-flakeOS - молодой проект, и помощь любого рода приветствуется: тестирование в QEMU/на реальном железе, отчёты об ошибках, идеи по roadmap, код. Перед PR лучше сначала обсудить идею в issue или в Telegram.
+flakeOS is a young project, and contributions of all kinds are welcome: testing in QEMU or on real hardware, bug reports, roadmap ideas, and code contributions.
 
+Before submitting a PR, it's best to discuss your idea in an issue or on Telegram.
